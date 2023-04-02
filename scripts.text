@@ -1,0 +1,17 @@
+- npm create vite@latest
+- npm install vue-router@4
+- npm install pinia
+- npm install -D tailwindcss postcss autoprefixer
+- npx tailwindcss init
+- touch postcss.config.cjs
+- install tailwind css intellisense vscode extension
+- install prettier code formatter vscode extension
+- npm install -D prettier prettier-plugin-tailwindcss
+- touch .prettierrc.json
+- npm install -D @types/node
+- install typescript vue plugin (volar) vscode extension
+- install vue 3 snippets vscode extension
+- install vue vscode snippets vscode extension
+- npm install -D @heroicons/vue
+- npm install -D @headlessui/vue
+- npm install -D @tailwindcss/forms

@@ -4,7 +4,6 @@ import NotFoundPage from '@pages/NotFound.vue';
 
 // Create a router and then export it
 const _routes:Array<vR.RouteRecordRaw> = [
-  // Path & Component are mandatory.
   {
     path: '/',
     component: DashboardPage,
@@ -12,8 +11,18 @@ const _routes:Array<vR.RouteRecordRaw> = [
   },
   {
     path: '/tickets',
-    component: () => import("@/pages/Tickets.vue"), // Lazy loading to defer loading only when required
-    name: 'home.tickets', // user defined. Keep dot notation to have elegant design
+    component: () => import("@/pages/Tickets/index.vue"),
+    name: 'home.tickets',
+  },
+  {
+    path: '/tickets/incident/submit',
+    component: () => import("@/pages/Tickets/SubmitIncident.vue"),
+    name: 'home.tickets.incident.submit',
+  },
+  {
+    path: '/tickets/request/submit',
+    component: () => import("@/pages/Tickets/SubmitRequest.vue"),
+    name: 'home.tickets.request.submit',
   },
   {
     path: '/login',
@@ -21,7 +30,7 @@ const _routes:Array<vR.RouteRecordRaw> = [
     name: 'home.auth', // user defined. Keep dot notation to have elegant design
   },
   {
-    path: '/:catchAll(.*)', // Need to change with regex to catch all non-defined
+    path: '/:catchAll(.*)',
     component: NotFoundPage,
     name: 'home.missing',
   },

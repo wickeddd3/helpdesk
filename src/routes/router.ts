@@ -25,6 +25,11 @@ const _routes:Array<vR.RouteRecordRaw> = [
     name: 'home.tickets.request.submit',
   },
   {
+    path: '/profile',
+    component: () => import("@/pages/Profile.vue"),
+    name: 'home.profile',
+  },
+  {
     path: '/login',
     component: () => import("@pages/Auth.vue"), // Lazy loading to defer loading only when required
     name: 'home.auth', // user defined. Keep dot notation to have elegant design

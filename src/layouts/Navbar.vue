@@ -75,13 +75,24 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline';
 
-const navigation = [
-  { name: 'Dashboard', to: '/', current: true },
-  { name: 'My Tickets', to: '/tickets', current: false },
+const navRoutes = [
+  { name: 'Dashboard', to: '/' },
+  { name: 'My Tickets', to: '/tickets' },
 ]
+
+const currentRoute = useRoute();
+
+const navigation = computed(() => {
+  return navRoutes.map(route => ({
+    ...route,
+    current: currentRoute.matched.some(item => item.path === route.to)
+  }))
+})
 </script>
 
 <style scoped>

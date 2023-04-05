@@ -1,0 +1,110 @@
+<template>
+  <div class="bg-white mt-12 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <!-- Search field and submit buttons-->
+    <div class="lg:flex lg:items-center lg:justify-between px-8 pb-12">
+      <div class="relative rounded-md shadow-sm">
+        <input
+          type="text"
+          name="search"
+          id="search"
+          class="block w-full rounded-md border-0 py-1.5 pl-10 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          placeholder="search..."
+        />
+        <div class="absolute inset-y-0 left-3.5 flex items-center">
+          <MagnifyingGlassIcon class="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
+        </div>
+      </div>
+      <div class="mt-5 flex lg:ml-4 lg:mt-0">
+        <RouterLink
+          to="/tickets/incident/submit"
+          type="button"
+          class="inline-flex items-center rounded-md bg-white px-3 py-2 mr-8 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+        >
+          <ExclamationTriangleIcon class="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
+          Submit an Incident
+        </RouterLink>
+
+        <RouterLink
+          to="/tickets/request/submit"
+          type="button"
+          class="inline-flex items-center rounded-md bg-white px-3 py-2 mr-4 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+        >
+          <PlusCircleIcon class="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
+          Submit a Request
+        </RouterLink>
+      </div>
+    </div>
+
+    <!-- Ticket Tabs -->
+    <TabGroup>
+      <TabList class="flex space-x-1">
+        <Tab
+          v-for="panel in panels"
+          as="template"
+          class="flex"
+          :key="panel.title"
+          v-slot="{ selected }"
+        >
+          <button
+            :class="[
+              'outline-0 focus py-2 mx-8',
+              selected
+                ? 'border-indigo-600 text-indigo-600'
+                : 'border-transparent text-gray-700 hover:text-gray-800',
+                  'relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out',
+            ]"
+          >
+            {{ panel.title }}
+            <span class="mx-4 text-sm font-bold text-gray-700 group-hover:text-gray-800">0</span>
+          </button>
+        </Tab>
+      </TabList>
+      <TabPanels class="mt-2">
+        <TabPanel
+          v-for="panel in panels"
+          :key="panel.id"
+          :class="[
+            'rounded-xl bg-white p-8',
+            'ring-white ring-opacity-60 ring-offset-2 focus:outline-none focus:ring-2',
+          ]"
+        >
+          <component :is="panel.component"></component>
+        </TabPanel>
+      </TabPanels>
+    </TabGroup>
+  </div>
+</template>
+
+<script setup lang="ts">
+import {
+  TabGroup,
+  TabList,
+  Tab,
+  TabPanels,
+  TabPanel,
+} from '@headlessui/vue';
+import {
+  ExclamationTriangleIcon,
+  MagnifyingGlassIcon,
+  PlusCircleIcon,
+} from '@heroicons/vue/24/outline'
+import CurrentTickets from '@components/Tickets/CurrentTickets.vue';
+import ClosedTickets from '@components/Tickets/ClosedTickets.vue';
+
+const panels = [
+  {
+    id: 0,
+    title: 'Current Tickets',
+    component: CurrentTickets,
+  },
+  {
+    id: 1,
+    title: 'Recently Closed',
+    component: ClosedTickets,
+  },
+];
+</script>
+
+<style scoped>
+
+</style>

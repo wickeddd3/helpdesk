@@ -1,95 +1,98 @@
 <template>
-  <div class="bg-white my-12 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-    <form>
-      <div class="space-y-12">
-        <div class="border-b border-gray-900/10 pb-12">
-          <h2 class="text-base font-semibold leading-7 text-gray-900">Submit Incident</h2>
+  <app-content>
+    <div class="bg-white my-12 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+      <form>
+        <div class="space-y-12">
+          <div class="border-b border-gray-900/10 pb-12">
+            <h2 class="text-base font-semibold leading-7 text-gray-900">Submit Incident</h2>
 
-          <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div class="col-span-12">
-              <ComboBoxField
-                title="Template"
-                :value="template"
-                :items="templateOptions"
-                @input="template = $event"
-              />
-            </div>
+            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+              <div class="col-span-12">
+                <ComboBoxField
+                  title="Template"
+                  :value="template"
+                  :items="templateOptions"
+                  @input="template = $event"
+                />
+              </div>
 
-            <div class="col-span-2">
-              <ComboBoxField
-                title="Category"
-                :value="category"
-                :items="categoryOptions"
-                @input="category = $event"
-              />
-            </div>
+              <div class="col-span-2">
+                <ComboBoxField
+                  title="Category"
+                  :value="category"
+                  :items="categoryOptions"
+                  @input="category = $event"
+                />
+              </div>
 
-            <div class="col-span-2">
-              <ComboBoxField
-                title="Subcategory"
-                :value="subcategory"
-                :items="subcategoryOptions"
-                @input="subcategory = $event"
-              />
-            </div>
+              <div class="col-span-2">
+                <ComboBoxField
+                  title="Subcategory"
+                  :value="subcategory"
+                  :items="subcategoryOptions"
+                  @input="subcategory = $event"
+                />
+              </div>
 
-            <div class="col-span-12">
-              <TextField
-                title="Title"
-                name="title"
-                :value="title"
-                @input="title = $event.target.value"
-              />
-            </div>
+              <div class="col-span-12">
+                <TextField
+                  title="Title"
+                  name="title"
+                  :value="title"
+                  @input="title = $event.target.value"
+                />
+              </div>
 
-            <div class="col-span-12">
-              <TextareaField
-                title="Description"
-                name="description"
-                :value="description"
-                @input="description = $event.target.value"
-              />
-            </div>
+              <div class="col-span-12">
+                <TextareaField
+                  title="Description"
+                  name="description"
+                  :value="description"
+                  @input="description = $event.target.value"
+                />
+              </div>
 
-            <div class="col-span-2">
-              <ComboBoxField
-                title="Urgency"
-                :value="urgency"
-                :items="urgencyOptions"
-                @input="urgency = $event"
-              />
-            </div>
+              <div class="col-span-2">
+                <ComboBoxField
+                  title="Urgency"
+                  :value="urgency"
+                  :items="urgencyOptions"
+                  @input="urgency = $event"
+                />
+              </div>
 
-            <div class="col-span-12">
-              <ImageUploadField
-                title="Attachments"
-              />
+              <div class="col-span-12">
+                <ImageUploadField
+                  title="Attachments"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="mt-6 flex items-center justify-end gap-x-6">
-        <RouterLink
-          to="/tickets"
-          type="button"
-          class="text-sm font-semibold leading-6 text-gray-900 px-8"
-        >
-          Cancel
-        </RouterLink>
-        <button
-          type="submit"
-          class="rounded-md bg-indigo-600 px-8 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
-          Submit
-        </button>
-      </div>
-    </form>
-  </div>
+        <div class="mt-6 flex items-center justify-end gap-x-6">
+          <RouterLink
+            to="/tickets"
+            type="button"
+            class="text-sm font-semibold leading-6 text-gray-900 px-8"
+          >
+            Cancel
+          </RouterLink>
+          <button
+            type="submit"
+            class="rounded-md bg-indigo-600 px-8 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </app-content>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import AppContent from '@components/App/AppContent.vue';
 import ComboBoxField from '@core/fields/ComboBoxField.vue';
 import TextField from '@core/fields/TextField.vue';
 import TextareaField from '@core/fields/TextareaField.vue';

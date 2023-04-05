@@ -21,6 +21,7 @@
       "@components/*": ["components/*"],
       "@pages/*": ["pages/*"],
       "@layouts/*": ["layouts/*"],
+      "@core/*": ["core/*"],
     },
   },
   "include": [

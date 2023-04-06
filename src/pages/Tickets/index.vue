@@ -38,7 +38,7 @@
 
       <!-- Ticket Tabs -->
       <TabGroup>
-        <TabList class="flex space-x-1">
+        <TabList class="flex px-7">
           <Tab
             v-for="panel in panels"
             as="template"
@@ -48,7 +48,7 @@
           >
             <button
               :class="[
-                'outline-0 focus py-2 mx-8',
+                'outline-0 focus py-2 mx-2',
                 selected
                   ? 'border-indigo-600 text-indigo-600'
                   : 'border-transparent text-gray-700 hover:text-gray-800',
@@ -93,17 +93,23 @@ import {
 import AppContent from '@components/App/AppContent.vue';
 import CurrentTickets from '@components/Tickets/CurrentTickets.vue';
 import ClosedTickets from '@components/Tickets/ClosedTickets.vue';
+import OpenTickets from '@components/Tickets/OpenTickets.vue';
 
 const panels = [
   {
     id: 0,
-    title: 'Current Tickets',
+    title: 'My Tickets',
     component: CurrentTickets,
   },
   {
     id: 1,
     title: 'Recently Closed',
     component: ClosedTickets,
+  },
+  {
+    id: 2,
+    title: 'Open Tickets',
+    component: OpenTickets,
   },
 ];
 </script>

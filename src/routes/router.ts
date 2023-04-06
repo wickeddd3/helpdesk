@@ -15,6 +15,11 @@ const _routes:Array<vR.RouteRecordRaw> = [
     name: 'home.tickets',
   },
   {
+    path: '/tickets/:id',
+    component: () => import("@/pages/Tickets/Ticket.vue"),
+    name: 'home.tickets.ticket',
+  },
+  {
     path: '/tickets/incident/submit',
     component: () => import("@/pages/Tickets/SubmitIncident.vue"),
     name: 'home.tickets.incident.submit',
@@ -35,7 +40,7 @@ const _routes:Array<vR.RouteRecordRaw> = [
     name: 'home.auth', // user defined. Keep dot notation to have elegant design
   },
   {
-    path: '/:catchAll(.*)',
+    path: '/:pathMatch(.*)*',
     component: NotFoundPage,
     name: 'home.missing',
   },

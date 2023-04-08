@@ -24,5 +24,112 @@
       "created": "09-03-2023 | 17:56:20",
       "updated": "09-03-2023 | 17:56:20"
     }
+  ],
+  "incidentTemplates": [
+    {
+      "id": 1,
+      "name": "Default"
+    },
+    {
+      "id": 2,
+      "name": "General Issue"
+    },
+    {
+      "id": 3,
+      "name": "Error/Issue with Google Apps - Gmail/Drive/Contacts/Calendar"
+    },
+    {
+      "id": 4,
+      "name": "Error/Issue with Microsoft Apps - Outlook/Excel/Word/Powerpoint"
+    },
+    {
+      "id": 5,
+      "name": "Error/Issue with Adobe Application"
+    },
+    {
+      "id": 6,
+      "name": "Phone issue with making or receiving calls"
+    }
+  ],
+  "categoryOptions": [
+    {
+      "id": 1,
+      "name": "Account Admin"
+    },
+    {
+      "id": 2,
+      "name": "Facilities"
+    },
+    {
+      "id": 3,
+      "name": "General Issue"
+    },
+    {
+      "id": 4,
+      "name": "Hardware"
+    },
+    {
+      "id": 5,
+      "name": "Internet"
+    },
+    {
+      "id": 6,
+      "name": "Online Systems"
+    },
+    {
+      "id": 7,
+      "name": "Permissions/Access"
+    },
+    {
+      "id": 8,
+      "name": "Phones"
+    },
+    {
+      "id": 9,
+      "name": "Server Software"
+    },
+    {
+      "id": 10,
+      "name": "Software"
+    }
+  ],
+  "subcategoryOptions": [
+    {
+      "id": 1,
+      "category": "Hardware",
+      "name": "Keyboard"
+    },
+    {
+      "id": 2,
+      "category": "Hardware",
+      "name": "Laptop"
+    },
+    {
+      "id": 3,
+      "category": "Hardware",
+      "name": "Monitor"
+    }
+  ],
+  "urgencyOptions": [
+    {
+      "id": 1,
+      "name": "Urgent"
+    },
+    {
+      "id": 2,
+      "name": "Very High"
+    },
+    {
+      "id": 3,
+      "name": "High"
+    },
+    {
+      "id": 4,
+      "name": "Normal"
+    },
+    {
+      "id": 5,
+      "name": "Low"
+    }
   ]
 }

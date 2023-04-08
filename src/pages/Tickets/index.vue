@@ -56,7 +56,9 @@
               ]"
             >
               {{ panel.title }}
-              <span class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-indigo-600 bg-blue-100 rounded-full dark:bg-indigo-900 dark:text-blue-300">3</span>
+              <span class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-indigo-600 bg-blue-100 rounded-full dark:bg-indigo-900 dark:text-blue-300">
+                {{ panel.total }}
+              </span>
             </button>
           </Tab>
         </TabList>
@@ -69,7 +71,11 @@
               'ring-white ring-opacity-60 ring-offset-2 focus:outline-none focus:ring-2',
             ]"
           >
-            <component :is="panel.component"></component>
+            <component
+              :is="panel.component"
+              :tickets="panel.tickets"
+              :total="panel.total"
+            ></component>
           </TabPanel>
         </TabPanels>
       </TabGroup>
@@ -84,34 +90,51 @@ import {
   Tab,
   TabPanels,
   TabPanel,
-} from '@headlessui/vue';
+} from '@headlessui/vue'
 import {
   ExclamationTriangleIcon,
   MagnifyingGlassIcon,
   PlusCircleIcon,
 } from '@heroicons/vue/24/outline'
-import AppContent from '@components/App/AppContent.vue';
-import CurrentTickets from '@components/Tickets/CurrentTickets.vue';
-import ClosedTickets from '@components/Tickets/ClosedTickets.vue';
-import OpenTickets from '@components/Tickets/OpenTickets.vue';
+import AppContent from '@components/App/AppContent.vue'
+import CurrentTickets from '@components/Tickets/CurrentTickets.vue'
+import ClosedTickets from '@components/Tickets/ClosedTickets.vue'
+import OpenTickets from '@components/Tickets/OpenTickets.vue'
+import { useTicketsStore } from '@stores/tickets'
+import { storeToRefs } from 'pinia'
+import { onMounted, computed } from 'vue'
 
-const panels = [
+const ticketsStore = useTicketsStore();
+const { getTickets } = ticketsStore;
+const store = storeToRefs(ticketsStore);
+
+onMounted(() => {
+  getTickets();
+})
+
+const panels = computed(() => [
   {
     id: 0,
     title: 'My Tickets',
     component: CurrentTickets,
+    tickets: [],
+    total: [].length,
   },
   {
     id: 1,
     title: 'Recently Closed',
     component: ClosedTickets,
+    tickets: store.closedTickets,
+    total: store.closedTickets.value.length,
   },
   {
     id: 2,
     title: 'Open Tickets',
     component: OpenTickets,
+    tickets: store.openTickets,
+    total: store.openTickets.value.length,
   },
-];
+]);
 </script>
 
 <style scoped>

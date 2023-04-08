@@ -18,6 +18,8 @@ export default defineConfig({
       "@pages": path.resolve(__dirname, "src/pages"),
       "@layouts": path.resolve(__dirname, "src/layouts"),
       "@core": path.resolve(__dirname, "src/core"),
+      "@stores": path.resolve(__dirname, "src/stores"),
+      "@data": path.resolve(__dirname, "src/data"),
     }
   }
 })

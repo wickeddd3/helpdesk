@@ -22,6 +22,8 @@
       "@pages/*": ["pages/*"],
       "@layouts/*": ["layouts/*"],
       "@core/*": ["core/*"],
+      "@stores/*": ["stores/*"],
+      "@data/*": ["data/*"],
     },
   },
   "include": [

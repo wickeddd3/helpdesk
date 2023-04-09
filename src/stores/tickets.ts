@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import router from '@/routes/router';
 import ticketsData from '@/data/tickets.txt';
 
 interface Category {
@@ -98,6 +99,7 @@ export const useTicketsStore = defineStore('tickets', {
       const tickets = [ ...this.tickets ];
       tickets.push(ticket);
       this.tickets = tickets;
+      router.push('/tickets');
     },
   },
 });

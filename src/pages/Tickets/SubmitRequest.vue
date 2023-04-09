@@ -1,7 +1,7 @@
 <template>
   <app-content>
     <div class="bg-white my-12 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-      <form>
+      <form @submit.prevent="submit">
         <div class="space-y-12">
           <div class="border-b border-gray-900/10 pb-12">
             <h2 class="text-base font-semibold leading-7 text-gray-900">Submit Request</h2>
@@ -11,7 +11,7 @@
                 <ComboBoxField
                   title="Template"
                   :value="template"
-                  :items="templateOptions"
+                  :items="requestTemplates"
                   @input="template = $event"
                 />
               </div>
@@ -19,18 +19,18 @@
               <div class="col-span-2">
                 <ComboBoxField
                   title="Category"
-                  :value="category"
+                  :value="ticket.category"
                   :items="categoryOptions"
-                  @input="category = $event"
+                  @input="ticket.category = $event"
                 />
               </div>
 
               <div class="col-span-2">
                 <ComboBoxField
                   title="Subcategory"
-                  :value="subcategory"
+                  :value="ticket.subcategory"
                   :items="subcategoryOptions"
-                  @input="subcategory = $event"
+                  @input="ticket.subcategory = $event"
                 />
               </div>
 
@@ -38,8 +38,8 @@
                 <TextField
                   title="Title"
                   name="title"
-                  :value="title"
-                  @input="title = $event.target.value"
+                  :value="ticket.title"
+                  @input="ticket.title = $event.target.value"
                 />
               </div>
 
@@ -47,17 +47,17 @@
                 <TextareaField
                   title="Description"
                   name="description"
-                  :value="description"
-                  @input="description = $event.target.value"
+                  :value="ticket.description"
+                  @input="ticket.description = $event.target.value"
                 />
               </div>
 
               <div class="col-span-2">
                 <ComboBoxField
                   title="Urgency"
-                  :value="urgency"
+                  :value="ticket.urgency"
                   :items="urgencyOptions"
-                  @input="urgency = $event"
+                  @input="ticket.urgency = $event"
                 />
               </div>
 
@@ -91,56 +91,67 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from 'vue';
+import { useTicketsStore } from '@stores/tickets';
 import AppContent from '@components/App/AppContent.vue';
 import ComboBoxField from '@core/fields/ComboBoxField.vue';
 import TextField from '@core/fields/TextField.vue';
 import TextareaField from '@core/fields/TextareaField.vue';
 import ImageUploadField from '@core/fields/ImageUploadField.vue';
 
-const templateOptions = [
-  { id: 1, name: 'Leaving User Request' },
-  { id: 2, name: 'Request New User Setup' },
-  { id: 3, name: 'Desk move request' },
-  { id: 4, name: 'IT Equipment Request' },
-  { id: 5, name: 'Window Admin Credentials' },
-  { id: 6, name: 'WiFi Connection Request' },
-  { id: 7, name: 'Pullout of Equipment' },
-]
+const ticketsStore = useTicketsStore();
 
-const categoryOptions = [
-  { id: 1, name: 'Account Admin' },
-  { id: 2, name: 'Facilities' },
-  { id: 3, name: 'General Issue' },
-  { id: 4, name: 'Hardware' },
-  { id: 5, name: 'Internet' },
-  { id: 6, name: 'Online Systems' },
-  { id: 7, name: 'Permissions/Access' },
-  { id: 8, name: 'Phones' },
-  { id: 9, name: 'Server Software' },
-  { id: 10, name: 'Software' },
-]
+const requestTemplates = ticketsStore.requestTemplates;
+const categoryOptions = ticketsStore.categoryOptions;
+const subcategoryOptions = ticketsStore.subcategoryOptions;
+const urgencyOptions = ticketsStore.urgencyOptions;
 
-const subcategoryOptions = [
-  { id: 1, name: 'Keyboard' },
-  { id: 2, name: 'Laptop' },
-  { id: 3, name: 'Monitor' },
-]
+interface Category {
+  id?: Number,
+  name?: String,
+}
 
-const urgencyOptions = [
-  { id: 1, name: 'Urgent' },
-  { id: 2, name: 'Very High' },
-  { id: 3, name: 'High' },
-  { id: 4, name: 'Normal' },
-  { id: 5, name: 'Low' },
-]
+interface Subcategory {
+  id?: Number,
+  category?: String,
+  name?: String,
+}
 
-let template = ref()
-let category = ref()
-let subcategory = ref()
-let title = ref()
-let description = ref()
-let urgency = ref()
+interface Urgency {
+  id?: Number,
+  name?: String,
+}
+
+interface Ticket {
+  category?: Category,
+  subcategory?: Subcategory,
+  title?: String,
+  description?: String,
+  urgency?: Urgency,
+}
+
+let template = ref();
+let ticket = (): Ticket => ({
+  category: ref({}) as Category,
+  subcategory: ref({}) as Subcategory,
+  title: '',
+  description: '',
+  urgency: ref({}) as Urgency,
+});
+
+const submit = () => {
+  const now = new Date();
+  const uniqueId = now.getTime().toString();
+  const newTicket = {
+    ...ticket,
+    id: uniqueId,
+    status: 'Open',
+    priority: 'Low',
+    created: '09-03-2023 | 17:56:20',
+    updated: '09-03-2023 | 17:56:20',
+  }
+  ticketsStore.addTicket(newTicket);
+}
 </script>
 
 <style scoped>

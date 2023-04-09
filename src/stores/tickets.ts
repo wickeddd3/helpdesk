@@ -30,7 +30,7 @@ interface TicketData {
   updated?: String,
 }
 
-interface IncidentTemplate {
+interface Template {
   id?: Number,
   name?: String,
 }
@@ -54,7 +54,8 @@ interface UrgencyOption {
 interface TicketState {
   tickets: TicketData[],
   currentTicket: TicketData,
-  incidentTemplates: IncidentTemplate[],
+  incidentTemplates: Template[],
+  requestTemplates: Template[],
   categoryOptions: CategoryOption[],
   subcategoryOptions: SubcategoryOption[],
   urgencyOptions: UrgencyOption[],
@@ -65,6 +66,7 @@ export const useTicketsStore = defineStore('tickets', {
     tickets: [],
     currentTicket: {},
     incidentTemplates: [],
+    requestTemplates: [],
     categoryOptions: [],
     subcategoryOptions: [],
     urgencyOptions: [],
@@ -80,12 +82,14 @@ export const useTicketsStore = defineStore('tickets', {
       const {
         tickets,
         incidentTemplates,
+        requestTemplates,
         categoryOptions,
         subcategoryOptions,
         urgencyOptions,
       } = JSON.parse(fileContent);
       this.tickets = tickets;
       this.incidentTemplates = incidentTemplates;
+      this.requestTemplates = requestTemplates;
       this.categoryOptions = categoryOptions;
       this.subcategoryOptions = subcategoryOptions;
       this.urgencyOptions = urgencyOptions;

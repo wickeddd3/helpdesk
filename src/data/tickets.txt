@@ -57,6 +57,36 @@
       "name": "Phone issue with making or receiving calls"
     }
   ],
+  "requestTemplates": [
+    {
+      "id": 1,
+      "name": "Leaving User Request"
+    },
+    {
+      "id": 2,
+      "name": "Request New User Setup"
+    },
+    {
+      "id": 3,
+      "name": "Desk move request"
+    },
+    {
+      "id": 4,
+      "name": "IT Equipment Request"
+    },
+    {
+      "id": 5,
+      "name": "Window Admin Credentials"
+    },
+    {
+      "id": 6,
+      "name": "WiFi Connection Request"
+    },
+    {
+      "id": 7,
+      "name": "Pullout of Equipment"
+    }
+  ],
   "categoryOptions": [
     {
       "id": 1,

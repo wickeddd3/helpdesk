@@ -65,16 +65,9 @@ import ClosedTickets from '@components/Tickets/ClosedTickets.vue'
 import OpenTickets from '@components/Tickets/OpenTickets.vue'
 import TicketsHeader from '@components/Tickets/TicketsHeader.vue'
 import { useTicketsStore } from '@stores/tickets'
-import { storeToRefs } from 'pinia'
-import { onMounted, computed } from 'vue'
+import { computed } from 'vue'
 
 const ticketsStore = useTicketsStore();
-const { getTickets } = ticketsStore;
-const store = storeToRefs(ticketsStore);
-
-onMounted(() => {
-  getTickets();
-})
 
 const panels = computed(() => [
   {
@@ -88,15 +81,15 @@ const panels = computed(() => [
     id: 1,
     title: 'Recently Closed',
     component: ClosedTickets,
-    tickets: store.closedTickets,
-    total: store.closedTickets.value.length,
+    tickets: ticketsStore.closedTickets,
+    total: ticketsStore.closedTickets.length,
   },
   {
     id: 2,
     title: 'Open Tickets',
     component: OpenTickets,
-    tickets: store.openTickets,
-    total: store.openTickets.value.length,
+    tickets: ticketsStore.openTickets,
+    total: ticketsStore.openTickets.length,
   },
 ]);
 </script>

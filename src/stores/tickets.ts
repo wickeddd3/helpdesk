@@ -1,15 +1,31 @@
 import { defineStore } from 'pinia';
 import ticketsData from '@/data/tickets.txt';
 
-interface TicketData {
+interface Category {
   id?: Number,
+  name?: String,
+}
+
+interface Subcategory {
+  id?: Number,
+  category?: String,
+  name?: String,
+}
+
+interface Urgency {
+  id?: Number,
+  name?: String,
+}
+
+interface TicketData {
+  id?: Number | String,
   title?: String,
   description?: String,
   status?: String,
-  urgency?: String,
+  urgency?: Urgency,
   priority?: String,
-  category?: String,
-  subcategory?: String,
+  category?: Category,
+  subcategory?: Subcategory,
   created?: String,
   updated?: String,
 }
@@ -73,6 +89,11 @@ export const useTicketsStore = defineStore('tickets', {
       this.categoryOptions = categoryOptions;
       this.subcategoryOptions = subcategoryOptions;
       this.urgencyOptions = urgencyOptions;
+    },
+    addTicket (ticket: TicketData) {
+      const tickets = [ ...this.tickets ];
+      tickets.push(ticket);
+      this.tickets = tickets;
     },
   },
 });

@@ -5,21 +5,21 @@
         {{ ticket.title }}
       </h2>
       <div class="flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-3">
-        <div class="bg-gray-200 dark:bg-gray-800 h-6 w-24 mb-4 md:mb-0 rounded-md flex items-center justify-center">
+        <div class="bg-gray-200 dark:bg-gray-800 h-6 px-2 mb-4 md:mb-0 rounded-md flex items-center justify-center">
             <div class="flex items-center">
                 <span class="text-xs text-gray-600 dark:text-gray-400 font-normal">Status</span>
                 <div class="h-1 w-1 rounded-full bg-gray-600 dark:bg-gray-400 mx-1"></div>
                 <span class="text-xs text-gray-600 dark:text-gray-400 font-normal">{{ ticket.status }}</span>
             </div>
         </div>
-        <div class="bg-gray-200 dark:bg-gray-800 h-6 w-24 mb-4 md:mb-0 rounded-md flex items-center justify-center">
+        <div class="bg-gray-200 dark:bg-gray-800 h-6 px-2 mb-4 md:mb-0 rounded-md flex items-center justify-center">
             <div class="flex items-center">
                 <span class="text-xs text-gray-600 dark:text-gray-400 font-normal">Urgency</span>
                 <div class="h-1 w-1 rounded-full bg-gray-600 dark:bg-gray-400 mx-1"></div>
-                <span class="text-xs text-gray-600 dark:text-gray-400 font-normal">{{ ticket.urgency }}</span>
+                <span class="text-xs text-gray-600 dark:text-gray-400 font-normal">{{ ticket.urgency?.name }}</span>
             </div>
         </div>
-        <div class="bg-gray-200 dark:bg-gray-800 h-6 w-24 mb-4 md:mb-0 rounded-md flex items-center justify-center">
+        <div class="bg-gray-200 dark:bg-gray-800 h-6 px-2 mb-4 md:mb-0 rounded-md flex items-center justify-center">
             <div class="flex items-center">
                 <span class="text-xs text-gray-600 dark:text-gray-400 font-normal">Priority</span>
                 <div class="h-1 w-1 rounded-full bg-gray-600 dark:bg-gray-400 mx-1"></div>
@@ -64,7 +64,7 @@ const props = withDefaults(defineProps<Ticket>(), {
   ticket: () => ({}),
 })
 
-const ticket = props.ticket
+const { ticket } = props
 </script>
 
 <style scoped>

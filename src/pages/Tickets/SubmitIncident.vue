@@ -19,18 +19,18 @@
               <div class="col-span-2">
                 <ComboBoxField
                   title="Category"
-                  :value="category"
+                  :value="ticket.category"
                   :items="categoryOptions"
-                  @input="category = $event"
+                  @input="ticket.category = $event"
                 />
               </div>
 
               <div class="col-span-2">
                 <ComboBoxField
                   title="Subcategory"
-                  :value="subcategory"
+                  :value="ticket.subcategory"
                   :items="subcategoryOptions"
-                  @input="subcategory = $event"
+                  @input="ticket.subcategory = $event"
                 />
               </div>
 
@@ -38,8 +38,8 @@
                 <TextField
                   title="Title"
                   name="title"
-                  :value="title"
-                  @input="title = $event.target.value"
+                  :value="ticket.title"
+                  @input="ticket.title = $event.target.value"
                 />
               </div>
 
@@ -47,17 +47,17 @@
                 <TextareaField
                   title="Description"
                   name="description"
-                  :value="description"
-                  @input="description = $event.target.value"
+                  :value="ticket.description"
+                  @input="ticket.description = $event.target.value"
                 />
               </div>
 
               <div class="col-span-2">
                 <ComboBoxField
                   title="Urgency"
-                  :value="urgency"
+                  :value="ticket.urgency"
                   :items="urgencyOptions"
-                  @input="urgency = $event"
+                  @input="ticket.urgency = $event"
                 />
               </div>
 
@@ -91,8 +91,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { storeToRefs } from 'pinia'
+import { ref } from 'vue';
 import { useTicketsStore } from '@stores/tickets';
 import AppContent from '@components/App/AppContent.vue';
 import ComboBoxField from '@core/fields/ComboBoxField.vue';
@@ -101,34 +100,57 @@ import TextareaField from '@core/fields/TextareaField.vue';
 import ImageUploadField from '@core/fields/ImageUploadField.vue';
 
 const ticketsStore = useTicketsStore();
-const { getTickets } = ticketsStore;
-const store = storeToRefs(ticketsStore);
 
-onMounted(() => {
-  getTickets();
-})
+const incidentTemplates = ticketsStore.incidentTemplates;
+const categoryOptions = ticketsStore.categoryOptions;
+const subcategoryOptions = ticketsStore.subcategoryOptions;
+const urgencyOptions = ticketsStore.urgencyOptions;
 
-const incidentTemplates = store.incidentTemplates;
-const categoryOptions = store.categoryOptions;
-const subcategoryOptions = store.subcategoryOptions;
-const urgencyOptions = store.urgencyOptions;
+interface Category {
+  id?: Number,
+  name?: String,
+}
 
-let template = ref()
-let category = ref()
-let subcategory = ref()
-let title = ref()
-let description = ref()
-let urgency = ref()
+interface Subcategory {
+  id?: Number,
+  category?: String,
+  name?: String,
+}
+
+interface Urgency {
+  id?: Number,
+  name?: String,
+}
+
+interface Ticket {
+  category?: Category,
+  subcategory?: Subcategory,
+  title?: String,
+  description?: String,
+  urgency?: Urgency,
+}
+
+let template = ref();
+let ticket = (): Ticket => ({
+  category: ref({}) as Category,
+  subcategory: ref({}) as Subcategory,
+  title: '',
+  description: '',
+  urgency: ref({}) as Urgency,
+});
 
 const submit = () => {
-  console.log({
-    template,
-    category,
-    subcategory,
-    title,
-    description,
-    urgency,
-  })
+  const now = new Date();
+  const uniqueId = now.getTime().toString();
+  const newTicket = {
+    ...ticket,
+    id: uniqueId,
+    status: 'Open',
+    priority: 'Low',
+    created: '09-03-2023 | 17:56:20',
+    updated: '09-03-2023 | 17:56:20',
+  }
+  ticketsStore.addTicket(newTicket);
 }
 </script>
 

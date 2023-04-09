@@ -5,7 +5,10 @@
       "title": "cannot login on my email account",
       "description": "when trying to login error keeps on showing credentials failed",
       "status": "Open",
-      "urgency": "Low",
+      "urgency": {
+        "id": 4,
+        "name": "Normal"
+      },
       "priority": "Low",
       "category": "Hardware",
       "subcategory": "Laptop",
@@ -17,7 +20,10 @@
       "title": "cannot login on my google account",
       "description": "when trying to login error keeps on showing credentials failed",
       "status": "Closed",
-      "urgency": "Low",
+      "urgency": {
+        "id": 5,
+        "name": "Low"
+      },
       "priority": "Low",
       "category": "Hardware",
       "subcategory": "Laptop",

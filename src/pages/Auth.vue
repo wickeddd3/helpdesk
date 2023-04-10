@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-center h-screen bg-gray-50">
+  <div class="flex flex-col items-center justify-center h-screen bg-gray-50">
     <div class="w-full max-w-md space-y-8 px-4">
       <div>
         <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" />
@@ -78,7 +78,38 @@
         </div>
       </form>
     </div>
+
+    <div class="w-full max-w-md py-4">
+      <div class="rounded-2xl bg-gray-100 py-4 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center">
+        <div class="mx-auto px-8">
+          <p class="text-base font-semibold text-gray-600">Administrator</p>
+          <p class="flex justify-between items-baseline gap-x-2 mt-4">
+            <span class="text-sm font-semibold leading-6 tracking-wide text-gray-600">Email</span>
+            <span class="text-sm font-normal leading-6 tracking-wide text-gray-600">admin@test.com</span>
+          </p>
+          <p class="flex justify-between items-baseline gap-x-1">
+            <span class="text-sm font-semibold leading-6 tracking-wide text-gray-600">Password</span>
+            <span class="text-sm font-normal leading-6 tracking-wide text-gray-600">password101</span>
+          </p>
+          <p class="mt-2 text-xs leading-5 text-gray-600 text-start">* Admin can show list of open & recently closed tickets and solved tickets</p>
+        </div>
+        <div class="mx-auto px-8">
+          <p class="text-base font-semibold text-gray-600">User</p>
+          <p class="flex justify-between items-baseline gap-x-2 mt-4">
+            <span class="text-sm font-semibold leading-6 tracking-wide text-gray-600">Email</span>
+            <span class="text-sm font-normal leading-6 tracking-wide text-gray-600">user@test.com</span>
+          </p>
+          <p class="flex justify-between items-baseline gap-x-1">
+            <span class="text-sm font-semibold leading-6 tracking-wide text-gray-600">Password</span>
+            <span class="text-sm font-normal leading-6 tracking-wide text-gray-600">password102</span>
+          </p>
+          <p class="mt-2 text-xs leading-5 text-gray-600 text-start">* User can show list of their current & recently closed tickets and add tickets</p>
+        </div>
+      </div>
+    </div>
   </div>
+
+  
 </template>
 
 <script setup lang="ts">

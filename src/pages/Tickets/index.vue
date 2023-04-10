@@ -60,22 +60,24 @@ import {
   TabPanel,
 } from '@headlessui/vue'
 import AppContent from '@components/App/AppContent.vue'
-import CurrentTickets from '@components/Tickets/CurrentTickets.vue'
 import ClosedTickets from '@components/Tickets/ClosedTickets.vue'
 import OpenTickets from '@components/Tickets/OpenTickets.vue'
 import TicketsHeader from '@components/Tickets/TicketsHeader.vue'
 import { useTicketsStore } from '@stores/tickets'
+import { useAuthStore } from '@stores/auth'
 import { computed } from 'vue'
 
 const ticketsStore = useTicketsStore();
+const authStore = useAuthStore();
 
 const panels = computed(() => [
   {
     id: 0,
-    title: 'My Tickets',
-    component: CurrentTickets,
-    tickets: [],
-    total: [].length,
+    title: authStore.authUser?.role === 'Administrator' ? 'Open Tickets' : 'My Tickets',
+    component: OpenTickets,
+    tickets: ticketsStore.openTickets,
+    total: ticketsStore.openTickets.length,
+    show: authStore.authUser?.role === 'Administrator',
   },
   {
     id: 1,
@@ -83,13 +85,7 @@ const panels = computed(() => [
     component: ClosedTickets,
     tickets: ticketsStore.closedTickets,
     total: ticketsStore.closedTickets.length,
-  },
-  {
-    id: 2,
-    title: 'Open Tickets',
-    component: OpenTickets,
-    tickets: ticketsStore.openTickets,
-    total: ticketsStore.openTickets.length,
+    show: authStore.authUser?.role === 'User' || authStore.authUser?.role === 'Administrator',
   },
 ]);
 </script>

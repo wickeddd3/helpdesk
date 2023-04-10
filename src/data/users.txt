@@ -2,11 +2,13 @@
   "users": [
     {
       "id": 101,
+      "role": "Administrator",
       "email": "admin@test.com",
       "password": "password101"
     },
     {
       "id": 102,
+      "role": "User",
       "email": "user@test.com",
       "password": "password102"
     }

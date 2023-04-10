@@ -1,5 +1,4 @@
 import * as vR from 'vue-router';
-import { reactive } from 'vue';
 import DashboardPage from '@pages/Dashboard.vue';
 import NotFoundPage from '@pages/NotFound.vue';
 

@@ -34,14 +34,14 @@
         </div>
       </div>
     </div>
-    <div class="mt-5 flex lg:ml-4 lg:mt-0">
+    <!-- <div class="mt-5 flex lg:ml-4 lg:mt-0">
       <EllipsisVerticalIcon class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-500" aria-hidden="true" />
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script setup lang="ts">
-import { EllipsisVerticalIcon } from '@heroicons/vue/20/solid'
+// import { EllipsisVerticalIcon } from '@heroicons/vue/20/solid'
 
 interface TicketData {
   id?: Number,

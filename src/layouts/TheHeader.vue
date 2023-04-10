@@ -52,7 +52,11 @@
                   </RouterLink>
                 </MenuItem>
                 <MenuItem v-slot="{ active }">
-                  <a href="#" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Sign out</a>
+                  <a
+                    href="#"
+                    :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']"
+                    @click="authStore.logoutUser()"
+                  >Sign out</a>
                 </MenuItem>
               </MenuItems>
             </transition>
@@ -81,6 +85,9 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline';
+import { useAuthStore } from '@/stores/auth';
+
+const authStore = useAuthStore();
 
 const navRoutes = [
   { name: 'Dashboard', to: '/' },

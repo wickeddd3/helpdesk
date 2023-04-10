@@ -131,13 +131,13 @@ interface Ticket {
 }
 
 let template = ref();
-let ticket = (): Ticket => ({
+let ticket: Ticket = {
   category: ref({}) as Category,
   subcategory: ref({}) as Subcategory,
   title: '',
   description: '',
   urgency: ref({}) as Urgency,
-});
+};
 
 const submit = () => {
   const now = new Date();

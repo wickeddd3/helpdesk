@@ -25,6 +25,10 @@ export const useAuthStore = defineStore('auth', {
     users: [],
     authUser: {},
   }),
+  getters: {
+    isAdmin: (state) => state.authUser?.role === 'Administrator',
+    isUser: (state) => state.authUser?.role === 'User',
+  },
   actions: {
     async getUsers () {
       const response = await fetch(usersData);
@@ -48,7 +52,7 @@ export const useAuthStore = defineStore('auth', {
       const authUserObj: User = authUser ? JSON.parse(authUser) : {};
       const user = this.users.find(user => user.id === authUserObj.id);
       if (user) {
-      this.authUser = user as User;
+        this.authUser = user as User;
       }
     },
   },

@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { toRaw } from 'vue';
 import router from '@/routes/router';
 import ticketsData from '@/data/tickets.txt';
 
@@ -22,6 +23,7 @@ interface TicketData {
   id?: Number | String,
   title?: String,
   description?: String,
+  solution?: String,
   status?: String,
   urgency?: Urgency,
   priority?: String,
@@ -97,9 +99,42 @@ export const useTicketsStore = defineStore('tickets', {
     },
     addTicket (ticket: TicketData) {
       const tickets = [ ...this.tickets ];
-      tickets.push(ticket);
+      tickets.push({
+        ...ticket,
+        solution: '',
+      });
       this.tickets = tickets;
       router.push('/tickets');
+    },
+    getTicket (id: Number | String) {
+      const tickets = toRaw(this.tickets);
+      const ticket = tickets.find(item => item.id == id);
+      this.currentTicket = toRaw(ticket) as TicketData;
+    },
+    resolveTicket (ticket: TicketData, solution: String) {
+      const tickets = [ ...this.tickets ];
+      const ticketData = toRaw(ticket);
+      const index = tickets.findIndex(item => item.id === ticket.id);
+      const updatedTicketData = {
+        ...ticketData,
+        solution,
+        status: 'Closed',
+      };
+      tickets[index] = updatedTicketData;
+      this.tickets = tickets;
+      router.push('/tickets');
+    },
+    reopenTicket (ticket: TicketData, id: String | Number) {
+      const tickets = [ ...this.tickets ];
+      const ticketData = toRaw(ticket);
+      const index = tickets.findIndex(item => item.id === ticket.id);
+      const updatedTicketData = {
+        ...ticketData,
+        status: 'Open',
+      };
+      tickets[index] = updatedTicketData;
+      this.tickets = tickets;
+      this.getTicket(id);
     },
   },
 });

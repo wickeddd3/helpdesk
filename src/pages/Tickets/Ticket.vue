@@ -110,7 +110,7 @@ import TextareaField from '@core/fields/TextareaField.vue';
 import { useRoute } from 'vue-router';
 import { useTicketsStore } from '@stores/tickets';
 import { useAuthStore } from '@stores/auth';
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 
 const route = useRoute();
 

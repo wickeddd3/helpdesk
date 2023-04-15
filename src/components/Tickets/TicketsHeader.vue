@@ -14,6 +14,7 @@
     </div>
     <div class="mt-5 flex lg:ml-4 lg:mt-0">
       <RouterLink
+        v-if="isUser"
         to="/tickets/incident/submit"
         type="button"
         class="inline-flex items-center rounded-md bg-white px-3 py-2 mr-8 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
@@ -23,6 +24,7 @@
       </RouterLink>
 
       <RouterLink
+        v-if="isUser"
         to="/tickets/request/submit"
         type="button"
         class="inline-flex items-center rounded-md bg-white px-3 py-2 mr-4 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
@@ -40,6 +42,13 @@ import {
   MagnifyingGlassIcon,
   PlusCircleIcon,
 } from '@heroicons/vue/24/outline'
+import { computed } from 'vue';
+import { useAuthStore } from '@/stores/auth'
+
+const authStore = useAuthStore();
+
+const isUser = computed(() => authStore.isUser);
+
 </script>
 
 <style scoped>

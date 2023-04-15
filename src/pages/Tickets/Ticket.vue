@@ -117,7 +117,7 @@ const route = useRoute();
 const ticketsStore = useTicketsStore();
 const authStore = useAuthStore();
 
-const currentRouteParamsId = route.params.id as String | Number;
+const currentRouteParamsId = route.params.id as string | number;
 
 ticketsStore.getTicket(currentRouteParamsId);
 

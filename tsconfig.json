@@ -24,6 +24,7 @@
       "@core/*": ["core/*"],
       "@stores/*": ["stores/*"],
       "@data/*": ["data/*"],
+      "@types/*": ["types/*"],
     },
   },
   "include": [

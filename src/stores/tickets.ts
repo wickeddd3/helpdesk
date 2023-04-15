@@ -2,67 +2,11 @@ import { defineStore } from 'pinia';
 import { toRaw } from 'vue';
 import router from '@/routes/router';
 import ticketsData from '@/data/tickets.txt';
-
-interface Category {
-  id?: Number,
-  name?: String,
-}
-
-interface Subcategory {
-  id?: Number,
-  category?: String,
-  name?: String,
-}
-
-interface Urgency {
-  id?: Number,
-  name?: String,
-}
-
-interface TicketData {
-  id?: Number | String,
-  title?: String,
-  description?: String,
-  solution?: String,
-  status?: String,
-  urgency?: Urgency,
-  priority?: String,
-  category?: Category,
-  subcategory?: Subcategory,
-  created?: String,
-  updated?: String,
-}
-
-interface Template {
-  id?: Number,
-  name?: String,
-}
-
-interface CategoryOption {
-  id?: Number,
-  name?: String,
-}
-
-interface SubcategoryOption {
-  id?: Number,
-  category?: String,
-  name?: String,
-}
-
-interface UrgencyOption {
-  id?: Number,
-  name?: String,
-}
-
-interface TicketState {
-  tickets: TicketData[],
-  currentTicket: TicketData,
-  incidentTemplates: Template[],
-  requestTemplates: Template[],
-  categoryOptions: CategoryOption[],
-  subcategoryOptions: SubcategoryOption[],
-  urgencyOptions: UrgencyOption[],
-}
+import {
+  NewTicket,
+  TicketData,
+  TicketState,
+} from '@/types/ticket';
 
 export const useTicketsStore = defineStore('tickets', {
   state: (): TicketState => ({
@@ -97,21 +41,31 @@ export const useTicketsStore = defineStore('tickets', {
       this.subcategoryOptions = subcategoryOptions;
       this.urgencyOptions = urgencyOptions;
     },
-    addTicket (ticket: TicketData) {
+    addTicket (ticket: NewTicket | undefined) {
       const tickets = [ ...this.tickets ];
-      tickets.push({
+      const now = new Date();
+      const uniqueId = now.getTime().toString();
+      const newTicket = {
         ...ticket,
+        id: uniqueId,
+        status: 'Open',
+        priority: 'Low',
+        created: '09-03-2023 | 17:56:20',
+        updated: '09-03-2023 | 17:56:20',
+      }
+      tickets.push({
+        ...newTicket,
         solution: '',
       });
       this.tickets = tickets;
       router.push('/tickets');
     },
-    getTicket (id: Number | String) {
+    getTicket (id: number | string) {
       const tickets = toRaw(this.tickets);
       const ticket = tickets.find(item => item.id == id);
       this.currentTicket = toRaw(ticket) as TicketData;
     },
-    resolveTicket (ticket: TicketData, solution: String) {
+    resolveTicket (ticket: TicketData, solution: string) {
       const tickets = [ ...this.tickets ];
       const ticketData = toRaw(ticket);
       const index = tickets.findIndex(item => item.id === ticket.id);
@@ -124,7 +78,7 @@ export const useTicketsStore = defineStore('tickets', {
       this.tickets = tickets;
       router.push('/tickets');
     },
-    reopenTicket (ticket: TicketData, id: String | Number) {
+    reopenTicket (ticket: TicketData, id: string | number) {
       const tickets = [ ...this.tickets ];
       const ticketData = toRaw(ticket);
       const index = tickets.findIndex(item => item.id === ticket.id);

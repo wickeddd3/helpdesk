@@ -20,6 +20,7 @@ export default defineConfig({
       "@core": path.resolve(__dirname, "src/core"),
       "@stores": path.resolve(__dirname, "src/stores"),
       "@data": path.resolve(__dirname, "src/data"),
+      "@types": path.resolve(__dirname, "src/types"),
     }
   }
 })

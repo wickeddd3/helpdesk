@@ -91,8 +91,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, toRaw } from 'vue';
 import { useTicketsStore } from '@stores/tickets';
+import { NewTicket } from '@/types/ticket';
 import AppContent from '@components/App/AppContent.vue';
 import ComboBoxField from '@core/fields/ComboBoxField.vue';
 import TextField from '@core/fields/TextField.vue';
@@ -100,56 +101,22 @@ import TextareaField from '@core/fields/TextareaField.vue';
 import ImageUploadField from '@core/fields/ImageUploadField.vue';
 
 const ticketsStore = useTicketsStore();
-
 const incidentTemplates = ticketsStore.incidentTemplates;
 const categoryOptions = ticketsStore.categoryOptions;
 const subcategoryOptions = ticketsStore.subcategoryOptions;
 const urgencyOptions = ticketsStore.urgencyOptions;
 
-interface Category {
-  id?: Number,
-  name?: String,
-}
-
-interface Subcategory {
-  id?: Number,
-  category?: String,
-  name?: String,
-}
-
-interface Urgency {
-  id?: Number,
-  name?: String,
-}
-
-interface Ticket {
-  category?: Category,
-  subcategory?: Subcategory,
-  title?: String,
-  description?: String,
-  urgency?: Urgency,
-}
-
 let template = ref();
-let ticket: Ticket = {
-  category: ref({}) as Category,
-  subcategory: ref({}) as Subcategory,
+let ticket = ref({
+  category: {},
+  subcategory: {},
   title: '',
   description: '',
-  urgency: ref({}) as Urgency,
-};
+  urgency: {},
+}) as NewTicket;
 
 const submit = () => {
-  const now = new Date();
-  const uniqueId = now.getTime().toString();
-  const newTicket = {
-    ...ticket,
-    id: uniqueId,
-    status: 'Open',
-    priority: 'Low',
-    created: '09-03-2023 | 17:56:20',
-    updated: '09-03-2023 | 17:56:20',
-  }
+  const newTicket = toRaw(ticket.value);
   ticketsStore.addTicket(newTicket);
 }
 </script>

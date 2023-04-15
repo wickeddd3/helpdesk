@@ -1,24 +1,8 @@
 import { defineStore } from 'pinia';
 import { toRaw } from 'vue';
+import { Auth, User, AuthState } from '@/types/auth';
 import router from '@/routes/router';
 import usersData from '@/data/users.txt';
-
-interface Auth {
-  email?: String,
-  password?: String,
-}
-
-interface User {
-  id?: Number | String,
-  role?: String,
-  email?: String,
-  password?: String,
-}
-
-interface AuthState {
-  users: User[],
-  authUser: User,
-}
 
 export const useAuthStore = defineStore('auth', {
   state: (): AuthState => ({

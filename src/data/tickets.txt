@@ -1,22 +1,5 @@
 {
-  "tickets": [
-    {
-      "id": 1,
-      "title": "cannot login on my email account",
-      "description": "when trying to login error keeps on showing credentials failed",
-      "solution": "",
-      "status": "Open",
-      "urgency": {
-        "id": 4,
-        "name": "Normal"
-      },
-      "priority": "Low",
-      "category": "Hardware",
-      "subcategory": "Laptop",
-      "created": "09-03-2023 | 17:56:20",
-      "updated": "09-03-2023 | 17:56:20"
-    }
-  ],
+  "tickets": [],
   "incidentTemplates": [
     {
       "id": 1,

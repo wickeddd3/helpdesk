@@ -108,23 +108,17 @@
         </div>
       </div>
     </div>
-  </div>
-
-  
+  </div>  
 </template>
 
 <script setup lang="ts">
 import { useAuthStore } from '@/stores/auth'
 import { LockClosedIcon } from '@heroicons/vue/20/solid'
+import { Auth } from '@/types/auth';
 
 const authStore = useAuthStore();
 
 authStore.getUsers();
-
-interface Auth {
-  email?: String,
-  password?: String,
-}
 
 let auth: Auth = {
   email: '',

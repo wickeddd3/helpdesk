@@ -11,8 +11,6 @@
                 <TextField
                   title="Name"
                   name="name"
-                  :value="title"
-                  @input="title = $event.target.value"
                 />
               </div>
 
@@ -20,8 +18,6 @@
                 <TextField
                   title="Email"
                   name="email"
-                  :value="title"
-                  @input="title = $event.target.value"
                 />
               </div>
 
@@ -29,8 +25,6 @@
                 <TextField
                   title="Phone"
                   name="phone"
-                  :value="title"
-                  @input="title = $event.target.value"
                 />
               </div>
             </div>
@@ -58,55 +52,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import AppContent from '@components/App/AppContent.vue';
-import ComboBoxField from '@core/fields/ComboBoxField.vue';
 import TextField from '@core/fields/TextField.vue';
-import TextareaField from '@core/fields/TextareaField.vue';
-import ImageUploadField from '@core/fields/ImageUploadField.vue';
-
-const templateOptions = [
-  { id: 1, name: 'Default' },
-  { id: 2, name: 'General Issue' },
-  { id: 3, name: 'Error/Issue with Google Apps - Gmail/Drive/Contacts/Calendar' },
-  { id: 4, name: 'Error/Issue with Microsoft Apps - Outlook/Excel/Word/Powerpoint' },
-  { id: 5, name: 'Error/Issue with Adobe Application' },
-  { id: 6, name: 'Phone issue with making or receiving calls' },
-]
-
-const categoryOptions = [
-  { id: 1, name: 'Account Admin' },
-  { id: 2, name: 'Facilities' },
-  { id: 3, name: 'General Issue' },
-  { id: 4, name: 'Hardware' },
-  { id: 5, name: 'Internet' },
-  { id: 6, name: 'Online Systems' },
-  { id: 7, name: 'Permissions/Access' },
-  { id: 8, name: 'Phones' },
-  { id: 9, name: 'Server Software' },
-  { id: 10, name: 'Software' },
-]
-
-const subcategoryOptions = [
-  { id: 1, name: 'Keyboard' },
-  { id: 2, name: 'Laptop' },
-  { id: 3, name: 'Monitor' },
-]
-
-const urgencyOptions = [
-  { id: 1, name: 'Urgent' },
-  { id: 2, name: 'Very High' },
-  { id: 3, name: 'High' },
-  { id: 4, name: 'Normal' },
-  { id: 5, name: 'Low' },
-]
-
-let template = ref()
-let category = ref()
-let subcategory = ref()
-let title = ref()
-let description = ref()
-let urgency = ref()
 </script>
 
 <style scoped>

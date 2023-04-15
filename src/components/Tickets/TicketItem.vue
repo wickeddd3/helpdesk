@@ -44,19 +44,7 @@
 
 <script setup lang="ts">
 // import { EllipsisVerticalIcon } from '@heroicons/vue/20/solid'
-
-interface TicketData {
-  id?: Number,
-  title?: String,
-  description?: String,
-  status?: String,
-  urgency?: String,
-  priority?: String,
-  category?: String,
-  subcategory?: String,
-  created?: String,
-  updated?: String,
-}
+import { TicketData } from '@/types/ticket';
 
 interface Ticket {
   ticket: TicketData

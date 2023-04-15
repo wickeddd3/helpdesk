@@ -10,21 +10,9 @@
 </template>
 
 <script setup lang="ts">
+import { TicketData } from '@/types/ticket';
 import TicketItem from '@components/Tickets/TicketItem.vue'
 import Empty from '@components/Tickets/Empty.vue'
-
-interface TicketData {
-  id?: Number,
-  title?: String,
-  description?: String,
-  status?: String,
-  urgency?: String,
-  priority?: String,
-  category?: String,
-  subcategory?: String,
-  created?: String,
-  updated?: String,
-}
 
 interface Tickets {
   tickets: TicketData[] | TicketData,

@@ -1,12 +1,12 @@
 import * as vR from 'vue-router';
-import DashboardPage from '@pages/Dashboard.vue';
+import HomePage from '@/pages/Home.vue';
 import NotFoundPage from '@pages/NotFound.vue';
 
 // Create a router and then export it
 const _routes:Array<vR.RouteRecordRaw> = [
   {
     path: '/',
-    component: DashboardPage,
+    component: HomePage,
     name: 'home',
     meta: {
       authOnly: true,

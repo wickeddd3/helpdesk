@@ -90,7 +90,7 @@ import { useAuthStore } from '@/stores/auth';
 const authStore = useAuthStore();
 
 const navRoutes = [
-  { name: 'Dashboard', to: '/' },
+  { name: 'Home', to: '/' },
   { name: 'Tickets', to: '/tickets' },
 ]
 

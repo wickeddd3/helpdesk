@@ -15,7 +15,7 @@ import TicketItem from '@components/Tickets/TicketItem.vue'
 import Empty from '@components/Tickets/Empty.vue'
 
 interface Tickets {
-  tickets: TicketData[] | TicketData,
+  tickets: TicketData[],
   total: Number,
 }
 

@@ -16,7 +16,7 @@
           <div class="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-indigo-300 sm:text-sm">
             <ComboboxInput
               class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              :displayValue="(item) => item.name"
+              :displayValue="(item) => (item as Item).name"
               @change="query = $event.target.value"
             />
             <ComboboxButton class="absolute inset-y-0 right-0 flex items-center pr-2">
@@ -88,11 +88,17 @@ import {
   TransitionRoot,
 } from '@headlessui/vue'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
+import { stringify } from 'querystring';
+
+interface Item {
+  id: number,
+  name: string,
+}
 
 interface Props {
-  title?: string
-  items?: object[],
-  value?: object,
+  title: string
+  items: Item[],
+  value: Item,
 }
 
 const props = withDefaults(defineProps<Props>(), {

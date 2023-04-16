@@ -32,7 +32,7 @@
             <div class="flex items-center justify-between mb-4">
               <h3 class="text-sm font-medium text-gray-900">Urgency</h3>
               <div class="bg-gray-200 dark:bg-gray-800 h-6 w-24 mb-4 md:mb-0 rounded-md flex items-center justify-center">
-                <span class="text-xs text-gray-600 dark:text-gray-400 font-normal">{{ urgency.name }}</span>
+                <span class="text-xs text-gray-600 dark:text-gray-400 font-normal">{{ urgency?.name }}</span>
               </div>
             </div>
             <div class="flex items-center justify-between mb-4">

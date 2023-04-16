@@ -67,3 +67,8 @@ export interface TicketState {
   subcategoryOptions: SubcategoryOption[],
   urgencyOptions: UrgencyOption[],
 }
+
+export interface Item {
+  id: number,
+  name: string,
+}

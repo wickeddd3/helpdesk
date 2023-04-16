@@ -93,7 +93,7 @@
 <script setup lang="ts">
 import { ref, toRaw } from 'vue';
 import { useTicketsStore } from '@stores/tickets';
-import { NewTicket } from '@/types/ticket';
+import { NewTicket, Item } from '@/types/ticket';
 import AppContent from '@components/App/AppContent.vue';
 import ComboBoxField from '@core/fields/ComboBoxField.vue';
 import TextField from '@core/fields/TextField.vue';
@@ -101,18 +101,18 @@ import TextareaField from '@core/fields/TextareaField.vue';
 import ImageUploadField from '@core/fields/ImageUploadField.vue';
 
 const ticketsStore = useTicketsStore();
-const incidentTemplates = ticketsStore.incidentTemplates;
-const categoryOptions = ticketsStore.categoryOptions;
-const subcategoryOptions = ticketsStore.subcategoryOptions;
-const urgencyOptions = ticketsStore.urgencyOptions;
+const incidentTemplates: Item[] = ticketsStore.incidentTemplates as Item[];
+const categoryOptions: Item[] = ticketsStore.categoryOptions as Item[];
+const subcategoryOptions: Item[] = ticketsStore.subcategoryOptions as Item[];
+const urgencyOptions: Item[] = ticketsStore.urgencyOptions as Item[];
 
 let template = ref();
 let ticket = ref({
-  category: {},
-  subcategory: {},
+  category: undefined,
+  subcategory: undefined,
   title: '',
   description: '',
-  urgency: {},
+  urgency: undefined,
 }) as NewTicket;
 
 const submit = () => {

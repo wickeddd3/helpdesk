@@ -88,22 +88,18 @@ import {
   TransitionRoot,
 } from '@headlessui/vue'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
-import { stringify } from 'querystring';
-
-interface Item {
-  id: number,
-  name: string,
-}
+import { Item } from '@/types/ticket'
 
 interface Props {
   title: string
   items: Item[],
-  value: Item,
+  value: object | undefined,
 }
 
 const props = withDefaults(defineProps<Props>(), {
   title: '',
   items: () => [],
+  value: () => ({}),
 })
 
 let query = ref('')

@@ -22,5 +22,8 @@ export default defineConfig({
       "@data": path.resolve(__dirname, "src/data"),
       "@types": path.resolve(__dirname, "src/types"),
     }
-  }
+  },
+  build: {
+    outDir: 'docs',
+  },
 })
